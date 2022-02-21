@@ -16,7 +16,7 @@ let transporter=nodemailer.createTransport({
 const sendWelcomeEmail=(email,name)=>
 {
 
-transporter.sendMail({
+   transporter.sendMail({
   from:'sharmilakailasam@gmail.com',
   to:email,
   subject:'Welcome to the task manger',
@@ -32,9 +32,9 @@ console.log(error)
 })
 }
 
-sendCancelEmail=(email,name)=>
+sendCancelEmail= (email,name)=>
 {
-  transporter.sendMail({
+   transporter.sendMail({
     from:'sharmilakailasam@gmail.com',
     to:email,
     subject:'Account to the task manger deleted '+name+'.',

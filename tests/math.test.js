@@ -17,6 +17,8 @@ test('should calculate total with default tip',()=>
 })
 
 
+
+
 test('change the given temperature to celsius',()=>
 {
   const celcius=fahrenheitToCelsius(32)
@@ -62,3 +64,5 @@ test('should add sum(a,b) nos async/await',async()=>
   expect(sum).toBe(21)
 
 })
+
+
