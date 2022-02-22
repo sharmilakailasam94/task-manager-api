@@ -95,17 +95,19 @@ router.patch('/tasks/:id',auth,async(req,res)=>
       {
        return res.status(404).send('Length of the id should of 24 char exactly.')
       } */
-
       const updates=Object.keys(req.body)
      allowedUpdates=['description','completed']
+    
      isValidOperation=updates.every((update)=>allowedUpdates.includes(update))
+    
+
       //  in the above line used short-hand arrow function 
       if(!isValidOperation)
       {
         return res.status(400).send('Invalid updates!')
-      }
-  
-      try {
+      }  
+
+        try {
        const task= await Tasks.findOne({_id:req.params.id,owner:req.user._id})
          //const task= await Tasks.findById(req.params.id)
         

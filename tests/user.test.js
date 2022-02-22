@@ -1,33 +1,20 @@
 const request=require('supertest')
-const mongoose=require('mongoose')
-const jwt=require('Jsonwebtoken')
 const app=require('../src/app')
 const User=require('../src/models/user')
-
-const userOneId=new mongoose.Types.ObjectId()
-
-const userOne={
-    _id:userOneId,
-    name:'abcdef',
-    email:'abcdef@gmal.com',
-    password:'abcdef',
-    tokens:[{
-        token:jwt.sign({_id:userOneId},process.env.JWT_SECRET)
-    }]
-
-}
+const {
+    userOneId,
+    userOne,
+    setupDatabase,
+    userTwo,
+    UserTwoId,
+    taskOne,
+    taskTwo,
+    taskThree}=require('./fixtures/db')
 
 
-beforeEach(async()=>
-{
-await User.deleteMany()
-await new User(userOne).save()
-})
+beforeEach(setupDatabase)
 
-/* afterEach(()=>
-{
-    console.log('afterEach')
-}) */
+
 
 
 test('should signup a new user',async()=>
@@ -167,5 +154,49 @@ test('should not  update a valid invalid field',async()=>
     })
     .expect(400)
 })
+
+test('should not sign up for user without name or invalid name',async()=>
+{
+    const response=await request(app)
+    .post('/users')
+    .send({
+                
+        email:'santa@gmeil.com',
+        password:'fghj'
+    }).expect(400)
+ const user=await User.findOne({email:'santa.com'})
+ expect(user).toBeNull()
+})
+
+test('should not signup for invalid email id',async()=>
+{
+    const response=await request(app)
+    .post('/users')
+    .send({
+        name:'santa',    
+        email:'santa@.com',
+        password:'fghj3444'
+    }).expect(400)
+ const user=await User.findOne({email:'santa.com'})
+ expect(user).toBeNull()
+})
+test('should not signup for invalid password',async()=>
+{
+    const response=await request(app)
+    .post('/users')
+    .send({
+        name:'saSta',    
+        email:' Santa@mdsfg.com ',
+        password:'password'
+    }).expect(400)
+ const user=await User.findOne({email:'santa.com'})
+ expect(user).toBeNull()
+})
+
+
+
+
+
+
 
 // user test cases

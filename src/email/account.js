@@ -1,4 +1,4 @@
-const nodemailer=require('nodemailer')
+ const nodemailer=require('nodemailer')
 
 let transporter=nodemailer.createTransport({
   service:'gmail',
@@ -59,3 +59,4 @@ module.exports =
     sendWelcomeEmail,
     sendCancelEmail
   }
+ 

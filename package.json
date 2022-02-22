@@ -1,7 +1,6 @@
 {
   "name": "task-manager",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": " node src/index.js",
@@ -30,5 +29,17 @@
     "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "supertest": "^6.2.2"
-  }
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharmilakailasam94/task-manager-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sharmilakailasam94/task-manager-api/issues"
+  },
+  "homepage": "https://github.com/sharmilakailasam94/task-manager-api#readme",
+  "description": ""
 }
